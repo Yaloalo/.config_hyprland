@@ -64,6 +64,9 @@
 !qmk/**
 !qmk/.*
 
+
+!sddm.conf
+
 # Allow specific files
 !starship.toml
 
