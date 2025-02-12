@@ -1,173 +1,93 @@
+/* Global styles */
 * {
-  /* `otf-font-awesome` is required to be installed for icons */
-  font-family: "Noto Sans CJK KR Regular";
-  /*font-family: "D2CodingLigature Nerd Mono";*/
-  font-size: 13px;
-  min-height: 0;
+    font-size: 20px;
+    font-family: monospace;
 }
 
+/* Main window styling for Waybar */
 window#waybar {
-  background: linear-gradient(90deg, rgba(173,216,230,0.5), rgba(135,206,250,0.5));
-  color: #ffffff;
-  transition-property: background-color;
-  transition-duration: 0.5s;
+    background: #14151e;
+    color: #d0e7ff;
 }
 
-window#waybar.hidden {
-  opacity: 0.2;
+/* Custom arrow icons styling */
+#custom-right-arrow-dark,
+#custom-left-arrow-dark {
+    color: #0a0f1a;
 }
 
-#waybar.empty #window {
-  background-color: transparent;
+#custom-right-arrow-light,
+#custom-left-arrow-light {
+    color: #14151e;
+    background: #0a0f1a;
 }
 
-#workspaces {
-}
-
-#window {
-  margin: 2px;
-  padding-left: 8px;
-  padding-right: 8px;
-  background-color: rgba(0,0,0,0.3);
-  font-size: 14px;
-  font-weight: bold;
-  border: 1px solid #ADD8E6; /* Light blue border added */
-}
-
-button {
-  /* Use box-shadow instead of border so the text isn't offset */
-  box-shadow: inset 0 -3px transparent;
-  border: none;
-  border-radius: 0;
-}
-
-button:hover {
-  background: inherit;
-  border-top: 2px solid #ADD8E6; /* Changed to light blue */
-}
-
-#workspaces button {
-  padding: 0 4px;
-}
-
-#workspaces button:hover {
-}
-
-#workspaces button.focused {
-  background-color: rgba(0,0,0,0.3);
-  color: #ADD8E6;
-  border-top: 2px solid #ADD8E6;
-}
-
-#workspaces button.active {
-  background-color: rgba(0,0,0,0.3);
-  color: #ADD8E6;
-  border-top: 2px solid #ADD8E6;
-}
-
-#workspaces button.urgent {
-  background-color: #eb4d4b;
-}
-
-#mode {
-  background-color: #87CEFA; /* Changed to light blue */
-  border-bottom: 3px solid #ADD8E6; /* Light blue border */
-}
-
-#clock,
-#battery,
-#cpu,
-#memory,
-#disk,
-#temperature,
-#backlight,
-#network,
+/* Common background for modules */
+#workspaces,
+#clock.1,
+#clock.2,
+#clock.3,
 #pulseaudio,
-#wireplumber,
-#custom-media,
-#tray,
-#mode,
-#idle_inhibitor,
-#scratchpad,
-#mpd {
-  margin: 2px;
-  padding-left: 4px;
-  padding-right: 4px;
-  background-color: rgba(0,0,0,0.3);
-  color: #ffffff;
+#memory,
+#cpu,
+#battery,
+#disk,
+#tray {
+    background: #0a0f1a;
 }
 
-.modules-left > widget:first-child > #workspaces {
-  margin-left: 0;
+/* Workspace button default styling */
+#workspaces button {
+    padding: 0 2px;
+    color: #d0e7ff;
 }
 
-.modules-right > widget:last-child > #workspaces {
-  margin-right: 0;
+/* Active/focused workspace: now using a more mellow purple with white text */
+#workspaces button.active,
+#workspaces button.focused {
+    background: #a64da6; /* Mellow purple/magenta */
+    color: #ffffff;      /* White text for workspace number */
+    border-radius: 4px;
+    padding: 0 5px;
+    font-weight: bold;
 }
 
-#clock {
-  font-size: 14px;
-  font-weight: bold;
+/* Workspace button hover effects */
+#workspaces button:hover {
+    box-shadow: inherit;
+    text-shadow: inherit;
+    background: #0a0f1a;
+    border: #0a0f1a;
+    padding: 0 3px;
 }
 
-#battery icon {
-  color: red;
+/* Module-specific color settings */
+#pulseaudio {
+    color: #7aa2f7;
 }
 
-#battery.charging, #battery.plugged {
-  color: #ffffff;
-  background-color: #26A65B;
+#memory {
+    color: #89b4fa;
 }
 
-@keyframes blink {
-  to {
-    background-color: #ffffff;
-    color: #000000;
-  }
+#cpu {
+    color: #b4cfff;
 }
 
-#battery.warning:not(.charging) {
-  background-color: #f53c3c;
-  color: #ffffff;
-  animation-name: blink;
-  animation-duration: 0.5s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
+#battery {
+    color: #8ecae6;
 }
 
-#battery.critical:not(.charging) {
-  background-color: #f53c3c;
-  color: #ffffff;
-  animation-name: blink;
-  animation-duration: 0.5s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
+#disk {
+    color: #a0c4ff;
 }
 
-label:focus {
-  background-color: #000000;
-}
-
-#network.disconnected {
-  background-color: #f53c3c;
-}
-
-#temperature.critical {
-  background-color: #eb4d4b;
-}
-
-#idle_inhibitor.activated {
-  background-color: #ecf0f1;
-  color: #2d3436;
-}
-
-#tray > .passive {
-  -gtk-icon-effect: dim;
-}
-
-#tray > .needs-attention {
-  -gtk-icon-effect: highlight;
-  background-color: #eb4d4b;
+/* Padding for clock and module elements */
+#clock,
+#pulseaudio,
+#memory,
+#cpu,
+#battery,
+#disk {
+    padding: 0 10px;
 }

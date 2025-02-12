@@ -1,138 +1,140 @@
+// -*- mode: json -*-
 {
-    // "layer": "top", // Waybar at top layer
-    // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 20,
-    // Choose the order of the modules
-    "modules-left": ["hyprland/workspaces", "custom/hyprland_mode", "custom/hyprland_scratchpad", "custom/media"],
-    "modules-center": ["clock"],
-	    "modules-right": ["network", "battery", "battery#bat2", "tray"],
-    // Modules configuration
-    "keyboard-state": {
-        "numlock": true,
-        "capslock": true,
-        "format": "{name} {icon}",
+    "layer": "top",
+    "position": "top",
+
+    "modules-left": [
+        "hyprland/workspaces",
+        "custom/right-arrow-dark"
+    ],
+    "modules-center": [
+        "custom/left-arrow-dark",
+        "custom/clock1",
+        "custom/left-arrow-light",
+        "custom/left-arrow-dark",
+        "custom/clock2",
+        "custom/right-arrow-dark",
+        "custom/right-arrow-light",
+        "custom/clock3",
+        "custom/right-arrow-dark"
+    ],
+    "modules-right": [
+        "custom/left-arrow-dark",
+        "wireplumber",
+        "custom/left-arrow-light",
+        "custom/bluetooth",
+        "custom/left-arrow-dark",
+        "memory",
+        "custom/left-arrow-light",
+        "custom/left-arrow-dark",
+        "cpu",
+        "custom/left-arrow-light",
+        "custom/left-arrow-dark",
+        "battery",
+        "custom/left-arrow-light",
+        "custom/left-arrow-dark",
+        "disk",
+        "custom/left-arrow-light",
+        "custom/left-arrow-dark",
+        "tray"
+    ],
+
+    "custom/left-arrow-dark": {
+        "format": "",
+        "tooltip": false
+    },
+    "custom/left-arrow-light": {
+        "format": "",
+        "tooltip": false
+    },
+    "custom/right-arrow-dark": {
+        "format": "",
+        "tooltip": false
+    },
+    "custom/right-arrow-light": {
+        "format": "",
+        "tooltip": false
+    },
+
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "format": "{name}"
+    },
+
+    "custom/clock1": {
+        "exec": "date +'%a'",
+        "interval": 60,
+        "tooltip": false
+    },
+    "custom/clock2": {
+        "exec": "date +'%H:%M'",
+        "interval": 10,
+        "tooltip": false
+    },
+    "custom/clock3": {
+        "exec": "date +'%m-%d'",
+        "interval": 60,
+        "tooltip": false
+    },
+
+    "wireplumber": {
+        "format": "{icon} {volume:2}%",
+        "format-bluetooth": "{icon} {volume}% ",
+        "format-muted": "MUTE",
         "format-icons": {
-            "locked": "",
-            "unlocked": ""
-        }
-    },
-    "custom/hyprland_mode": {
-        "format": "<span style=\"italic\">{}</span>"
-    },
-    "custom/hyprland_scratchpad": {
-        "format": "{icon} {count}",
-        "show-empty": false,
-        "format-icons": ["", ""],
-        "tooltip": true,
-        "tooltip-format": "{app}: {title}"
-    },
-    "mpd": {
-        "format": "  {title} - {artist} {stateIcon} [{elapsedTime:%M:%S}/{totalTime:%M:%S}] {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}[{songPosition}/{queueLength}] [{volume}%]",
-        "format-disconnected": " Disconnected",
-        "format-stopped": " {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped",
-        "unknown-tag": "N/A",
-        "interval": 2,
-        "consume-icons": {
-            "on": " "
+            "headphones": "",
+            "default": [
+                "",
+                ""
+            ]
         },
-        "random-icons": {
-            "on": " "
-        },
-        "repeat-icons": {
-            "on": " "
-        },
-        "single-icons": {
-            "on": "1 "
-        },
-        "state-icons": {
-            "paused": "",
-            "playing": ""
-        },
-        "tooltip-format": "MPD (connected)",
-        "tooltip-format-disconnected": "MPD (disconnected)",
-        "on-click": "mpc toggle",
-        "on-click-right": "foot -a ncmpcpp ncmpcpp",
-        "on-scroll-up": "mpc volume +2",
-        "on-scroll-down": "mpc volume -2"
+        "scroll-step": 5,
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "on-click-right": "pavucontrol"
     },
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": "",
-            "deactivated": ""
-        }
-    },
-    "tray": {
-        "spacing": 10
-    },
-    "clock": {
-        "locale": "en_US.UTF-8",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format": "{:L%Y-%m-%d<small>[%a]</small> <tt><small>%p</small></tt>%I:%M}"
+
+    
+
+"custom/bluetooth": {
+    "exec": "wpctl status | grep -q bluez_output && echo ' Connected' || echo ' Off'",
+    "interval": 10,
+    "tooltip": "PipeWire Bluetooth Control",
+    "on-click": "blueman-manager",
+    "on-click-right": "systemctl restart bluetooth",
+    "on-click-middle": "pavucontrol"
+},
+
+
+
+    "memory": {
+        "interval": 5,
+        "format": "Mem {}%"
     },
     "cpu": {
-        "format": " {usage}%"
-    },
-    "memory": {
-        "format": " {}%"
-    },
-    "temperature": {
-        "thermal-zone": 2,
-        "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
-        "critical-threshold": 80,
-        "format-critical": "{icon} {temperatureC}°C",
-        "format": "{icon} {temperatureC}°C",
-        "format-icons": ["", "", ""]
-    },
-    "backlight": {
-        "format": "{icon} {percent}%",
-        "format-icons": ["", "", "", "", "", "", "", "", ""]
+        "interval": 5,
+        "format": "CPU {usage:2}%"
     },
     "battery": {
         "states": {
+            "good": 95,
             "warning": 30,
             "critical": 15
         },
         "format": "{icon} {capacity}%",
-        "format-charging": " {capacity}%",
-        "format-plugged": " {capacity}%",
-        "format-alt": "{icon} {time}",
-        "format-icons": ["", "", "", "", ""]
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ]
     },
-    "battery#bat2": {
-        "bat": "BAT2"
+    "disk": {
+        "interval": 5,
+        "format": "Disk {percentage_used:2}%",
+        "path": "/"
     },
-    "network": {
-        "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": " {ifname}",
-        "tooltip-format": " {ifname} via {gwaddr}",
-        "format-linked": " {ifname} (No IP)",
-        "format-disconnected": "Disconnected ⚠ {ifname}",
-        "format-alt": " {ifname}: {ipaddr}/{cidr}"
-    },
-    "pulseaudio": {
-        "scroll-step": 5,
-        "format": "{icon} {volume}% {format_source}",
-        "format-bluetooth": " {icon} {volume}% {format_source}",
-        "format-bluetooth-muted": "  {icon} {format_source}",
-        "format-muted": "  {format_source}",
-        "format-source": " {volume}%",
-        "format-source-muted": "",
-        "format-icons": {
-            "default": ["", "", ""]
-        },
-        "on-click": "pavucontrol",
-        "on-click-right": "foot -a pw-top pw-top"
-    },
-    "custom/media": {
-        "format": "{icon} {}",
-        "return-type": "json",
-        "max-length": 40,
-        "format-icons": {
-            "spotify": "",
-            "default": "🎜"
-        },
-        "escape": true,
-        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null"
+    "tray": {
+        "icon-size": 20
     }
 }
