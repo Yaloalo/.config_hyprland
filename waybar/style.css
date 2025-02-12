@@ -74,9 +74,48 @@ window#waybar {
     color: #b4cfff;
 }
 
+
+/* Battery module base styling */
 #battery {
-    color: #8ecae6;
+    color: #8ecae6; /* Default color when battery is above 30% */
 }
+
+/* Battery warning state: capacity below 30% */
+#battery.warning {
+    color: #ffa500; /* Orange color */
+}
+
+/* Define a keyframes animation for blinking */
+@keyframes blink {
+    0%   { opacity: 1; }
+    50%  { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* Battery critical state: capacity below 15%, blinking magenta */
+#battery.critical {
+    color: magenta;
+    animation: blink 1s linear infinite;
+}
+
+
+
+#battery.charging {
+    color: green;
+    animation: none;
+}
+
+
+/* In case the battery is charging and critical simultaneously, ensure charging styles win */
+#battery.charging.critical {
+    color: green;
+    animation: none;
+}
+
+
+
+
+
 
 #disk {
     color: #a0c4ff;

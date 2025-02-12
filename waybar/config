@@ -112,23 +112,27 @@
     },
     "cpu": {
         "interval": 5,
-        "format": "CPU {usage:2}%"
+        "format": "CPU {usage:2}% "
+	},
+    
+"battery": {
+    "interval": 5,
+    "states": {
+        "good": 95,
+        "warning": 30,
+        "critical": 15
     },
-    "battery": {
-        "states": {
-            "good": 95,
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{icon} {capacity}%",
-        "format-icons": [
-            "",
-            "",
-            "",
-            "",
-            ""
-        ]
-    },
+    "format": "{icon} {capacity}%",
+    "format-charging": "{icon} {capacity}% ⚡",
+    "format-icons": [
+        "",
+        "",
+        "",
+        "",
+        ""
+    ]
+},
+
     "disk": {
         "interval": 5,
         "format": "Disk {percentage_used:2}%",
