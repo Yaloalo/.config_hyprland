@@ -5,7 +5,7 @@
     // Choose the order of the modules
     "modules-left": ["hyprland/workspaces", "custom/hyprland_mode", "custom/hyprland_scratchpad", "custom/media"],
     "modules-center": ["clock"],
-    "modules-right": ["network", "pulseaudio", "keyboard-state", "battery", "battery#bat2", "tray"],
+	    "modules-right": ["network", "battery", "battery#bat2", "tray"],
     // Modules configuration
     "keyboard-state": {
         "numlock": true,
